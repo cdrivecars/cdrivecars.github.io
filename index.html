@@ -575,10 +575,16 @@
 <script>
   function handleSubmit(e) {
     e.preventDefault();
-    const msg = document.getElementById('form-msg');
-    msg.style.display = 'block';
-    e.target.reset();
-    setTimeout(() => msg.style.display = 'none', 5000);
+    const form = e.target;
+    const name = form.querySelector('input[type="text"]').value.trim();
+    const phone = form.querySelector('input[type="tel"]').value.trim();
+    const interest = form.querySelector('select').value;
+    const message = form.querySelector('textarea').value.trim();
+
+    const text = `Hi CDriveCars! 🚗%0A%0A*Name:* ${encodeURIComponent(name)}%0A*Phone:* ${encodeURIComponent(phone)}%0A*Looking for:* ${encodeURIComponent(interest)}%0A*Message:* ${encodeURIComponent(message || 'No message')}`;
+
+    window.open(`https://wa.me/919963151226?text=${text}`, '_blank');
+    form.reset();
   }
 
   // Smooth scroll for all anchor links
